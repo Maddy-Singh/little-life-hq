@@ -4,6 +4,38 @@
 
 Little Life HQ is a local-first productivity application built to help users organise different areas of their lives through a single dashboard.
 
+
+## 📸 Little Life HQ — Dashboard Preview
+
+A look at the different sections and features of Little Life HQ.
+
+### 🏠 Home Dashboard
+
+![Home Page 1](<Demo Ananya Mehta Screenshots/Home Page 1.png>)
+
+![Home Page 2](<Demo Ananya Mehta Screenshots/Home Page 2.png>)
+
+### 📚 Academics & Productivity
+
+![Academics](<Demo Ananya Mehta Screenshots/Academics.png>)
+
+![My Week](<Demo Ananya Mehta Screenshots/My Week.png>)
+
+![My Activities](<Demo Ananya Mehta Screenshots/My Activities.png>)
+
+### 🌱 Personal Development
+
+![Daily Habit Tracker](<Demo Ananya Mehta Screenshots/Daily Habit Tracker.png>)
+
+![Internship Tracker](<Demo Ananya Mehta Screenshots/Internship Tracker.png>)
+
+### ⚙️ Settings & Backup
+
+![Settings and Backup 1](<Demo Ananya Mehta Screenshots/Settings & Backup 1.png>)
+
+![Settings and Backup 2](<Demo Ananya Mehta Screenshots/Settings & Backup 2.png>)
+
+
 ## Features
 
 - **Dashboard:** A central overview of your activities and progress.
