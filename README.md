@@ -25,6 +25,14 @@ Little Life HQ is a local-first productivity application built to help users org
 - IndexedDB
 - Vitest
 
+## Development Approach
+
+Little Life HQ was developed using an AI-assisted, vibe-coding workflow. I led the project concept, feature planning, requirements, design decisions and iterative development, using AI tools to assist with implementation and debugging.
+
+I also tested the application, validated its functionality and refined the project through multiple iterations.
+
+The project reflects my interest in product development, problem-solving and exploring how AI tools can support software creation.
+
 ## Run Locally
 
 ### Prerequisites
