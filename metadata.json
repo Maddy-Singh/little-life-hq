@@ -1,0 +1,6 @@
+{
+  "name": "Little Life HQ",
+  "description": "A private, local-first student life planner for weekly goals, college timetable, academics, internships, activities, and daily habits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
