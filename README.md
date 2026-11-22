@@ -2,19 +2,74 @@
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Little Life HQ
 
-This contains everything you need to run your app locally.
+**A personal life management dashboard designed to bring your everyday responsibilities, goals, and routines together in one place.**
 
-View your app in AI Studio: https://ai.studio/apps/e5519dbd-0385-44be-8f18-a533cf337367
+Little Life HQ is a local-first productivity application built to help users organise different areas of their lives through a single dashboard.
+
+## Features
+
+- **Dashboard:** A central overview of your activities and progress.
+- **Academics:** Organise subjects, assignments, and attendance.
+- **Timetable:** Manage your weekly schedule and events.
+- **Goals:** Set goals and track weekly progress.
+- **Habits:** Build routines and monitor consistency.
+- **Activities:** Keep track of personal activities.
+- **Internships:** Organise internship applications and their progress.
+- **Journal and reviews:** Reflect on your progress.
+- **Backup and restore:** Export and restore application data.
+
+## Technology Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS 4
+- IndexedDB
+- Vitest
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+### Prerequisites
 
+- Node.js
+- npm
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Installation
+
+1. Clone or download this repository.
+2. Open a terminal in the project directory.
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local address displayed in your terminal.
+
+## Development Commands
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build production version |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run TypeScript checks |
+| `npm test` | Run automated tests |
+
+## Data and Privacy
+
+Little Life HQ uses IndexedDB for local browser storage. Application data belongs to the individual browser environment.
+
+Users can manage their own data through the application's backup and restore functionality.
+
+## Project Status
+
+Little Life HQ is an ongoing personal project. Features and improvements may evolve over time.
