@@ -202,3 +202,26 @@ export async function closeDatabaseConnection(): Promise<void> {
     dbPromise = null;
   }
 }
+
+export async function areAllStoresEmpty(): Promise<boolean> {
+  const db = await openDatabase();
+
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction([...STORE_NAMES], 'readonly');
+    const counts = STORE_NAMES.map((name) =>
+      tx.objectStore(name).count()
+    );
+
+    tx.oncomplete = () => {
+      resolve(counts.every((request) => request.result === 0));
+    };
+
+    tx.onerror = () => {
+      reject(tx.error ?? new Error('Could not check database contents.'));
+    };
+
+    tx.onabort = () => {
+      reject(tx.error ?? new Error('Database check was aborted.'));
+    };
+  });
+}
