@@ -1,6 +1,13 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
 import {DEFAULT_SETTINGS, repository} from '../db/repository';
 import {
+  areAllStoresEmpty,
+  replaceAllStoresTransactional,
+  STORE_NAMES,
+  type StoreName,
+} from '../db/database';
+import {DEMO_BACKUP} from '../db/demoData';
+import {
   Activity,
   AppSettings,
   Assignment,
@@ -85,6 +92,42 @@ interface AppContextValue {
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
+const DEMO_INITIALIZED_KEY = 'little-life-hq-demo-initialized-v1';
+
+let demoInitializationPromise: Promise<void> | null = null;
+
+const initializeDemoData = (): Promise<void> => {
+  if (!demoInitializationPromise) {
+    demoInitializationPromise = (async () => {
+      if (localStorage.getItem(DEMO_INITIALIZED_KEY) === 'true') {
+        return;
+      }
+
+      const isEmpty = await areAllStoresEmpty();
+
+      if (!isEmpty) {
+        localStorage.setItem(DEMO_INITIALIZED_KEY, 'true');
+        return;
+      }
+
+      const recordsByStore = Object.fromEntries(
+        STORE_NAMES.map((name) => [
+          name,
+          [...DEMO_BACKUP.data[name]],
+        ])
+      ) as Record<StoreName, unknown[]>;
+
+      await replaceAllStoresTransactional(recordsByStore);
+
+      localStorage.setItem(DEMO_INITIALIZED_KEY, 'true');
+    })().catch((error) => {
+      demoInitializationPromise = null;
+      throw error;
+    });
+  }
+
+  return demoInitializationPromise;
+};
 
 export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
   const [loading, setLoading] = useState(true);
@@ -142,10 +185,19 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) =
     }
   }, [showToast]);
 
-  useEffect(() => {
-    refreshAll();
-  }, [refreshAll]);
+useEffect(() => {
+  const startApp = async () => {
+    try {
+      await initializeDemoData();
+    } catch {
+      showToast('Could not initialize demo data.', 'error');
+    }
 
+    await refreshAll();
+  };
+
+  startApp();
+}, [refreshAll, showToast]);
   useEffect(() => {
     const isDark = settings.theme === 'dark';
     document.documentElement.classList.toggle('dark', isDark);
@@ -310,10 +362,11 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) =
     await refreshAll();
   };
 
-  const resetAllData = async () => {
-    await repository.resetAllData();
-    await refreshAll();
-  };
+const resetAllData = async () => {
+  await repository.resetAllData();
+  localStorage.setItem(DEMO_INITIALIZED_KEY, 'true');
+  await refreshAll();
+};
 
   return (
     <AppContext.Provider
